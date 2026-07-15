@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./firefox.nix
-    ./git.nix
+    ./programs.nix
     ./zed-editor.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
