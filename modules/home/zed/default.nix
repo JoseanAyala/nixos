@@ -3,7 +3,7 @@
   home.packages = with pkgs; [
     zed-editor
     nil
-    nixfmt-rfc-style
+    nixfmt
   ];
 
   xdg.configFile."zed".source = ./config;

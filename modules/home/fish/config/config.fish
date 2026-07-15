@@ -24,12 +24,6 @@ alias cat='bat --paging=never'
 # trash-cli (safer rm)
 alias rm='trash-put'
 
-# herdr — auto-launch in top-level interactive shells only
-# (guard against re-launching inside herdr's own panes / non-interactive shells)
-if status is-interactive; and not set -q HERDR_PANE_ID
-    herdr
-end
-
 # misc
 alias cls='clear'
 alias vim='nvim'

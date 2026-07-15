@@ -2,7 +2,6 @@
   description = "NixOS and Home Manager configuration";
 
   inputs = {
-    # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -16,8 +15,8 @@
       system = "x86_64-linux";
       username = "josean";
       hostname = "josean-nixos";
-      lib = nixpkgs.lib;
       pkgs = nixpkgs.legacyPackages.${system};
+      inherit (nixpkgs) lib;
     in
     {
       # System config

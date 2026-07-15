@@ -6,8 +6,6 @@ in
   programs.firefox = {
     enable = true;
 
-    # Keep using the existing Firefox profile location and silence the
-    # Home Manager configPath migration warning.
     configPath = ".mozilla/firefox";
 
     policies = {

@@ -1,34 +1,34 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    neovim
-    git
-    gcc
-    gnumake
-    unzip
-    ripgrep
-    fd
-    lazygit
-    tree-sitter
+  home = {
+    packages = with pkgs; [
+      neovim
+      git
+      gcc
+      gnumake
+      unzip
+      ripgrep
+      fd
+      lazygit
+      tree-sitter
 
-    # Nix tooling
-    nil
-    nixfmt-rfc-style
-    statix
+      # -----------------------------------------------
+      # Mason uninstalled in config, let nix manage LSP
 
-    # Lua tooling for this Neovim config
-    lua-language-server
-    stylua
-  ];
+      # Nix tooling
+      nil
+      nixfmt
+      statix
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
-  };
+      # Lua tooling for this Neovim config
+      lua-language-server
+      stylua
+    ];
 
-  home.shellAliases = {
-    vi = "nvim";
-    vim = "nvim";
+    shellAliases = {
+      vi = "nvim";
+      vim = "nvim";
+    };
   };
 
   xdg.configFile."nvim".source = ./config;

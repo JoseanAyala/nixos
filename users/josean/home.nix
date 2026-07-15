@@ -5,21 +5,22 @@
     ../../modules/home/fish
     ../../modules/home/ghostty
     ../../modules/home/git
-    # ../../modules/home/herdr
+    ../../modules/home/herdr
     # ../../modules/home/hypr
     ../../modules/home/lazygit
     ../../modules/home/neovim
     # ../../modules/home/noctalia
     ../../modules/home/zed
   ];
-
-  home.username = username;
-  home.homeDirectory = "/home/${username}";
-  home.stateVersion = "25.11"; # Please read the comment before changing.
-  home.sessionVariables = {
-    # EDITOR = "emacs";
+  home = {
+    inherit username;
+    homeDirectory = "/home/${username}";
+    stateVersion = "25.11"; # Please read the comment before changing.
+    sessionVariables = {
+      # EDITOR = "emacs";
+    };
   };
 
   # Let Home Manager install and manage itself.
-  programs.home-manager.enable =  true;
+  programs.home-manager.enable = true;
 }
