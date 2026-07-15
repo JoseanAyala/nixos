@@ -14,25 +14,33 @@
     { nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
+      username = "josean";
+      hostname = "josean-nixos";
+
       lib = nixpkgs.lib;
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
       # System config
       nixosConfigurations = {
-        josean-nixos = lib.nixosSystem {
-          inherit system;
-          modules = [./configuration.nix];
+          ${hostname} = lib.nixosSystem {
+            inherit system;
+            specialArgs = {
+              inherit username hostname;
+            };
+            modules = [ ./configuration.nix ];
+          };
         };
-      };
 
       # User config
       homeConfigurations = {
-        josean = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [ ./home.nix ];
-          # Optionally use extraSpecialArgs to pass through arguments to home.nix
+          ${username} = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            extraSpecialArgs = {
+              inherit username hostname;
+            };
+            modules = [ ./home.nix ];
+          };
         };
-      };
     };
 }

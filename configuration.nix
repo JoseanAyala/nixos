@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, username, hostname, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -11,7 +11,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "josean-nixos"; # Define your hostname.
+  networking.hostName = hostname;
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;
 
@@ -32,7 +32,7 @@
   # Enable the fish shell system-wide
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
-  users.users."josean" = {
+  users.users.${username} = {
     isNormalUser = true;
     description = "Josean";
     extraGroups = [ "networkmanager" "wheel" ];
