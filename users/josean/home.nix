@@ -1,8 +1,8 @@
 { pkgs, username, ... }: {
   imports = [
-    ./cli.nix
-    ./firefox.nix
-    ./zed-editor.nix
+    ../../modules/home/cli.nix
+    ../../modules/home/firefox.nix
+    ../../modules/home/zed-editor.nix
   ];
 
   home.username = username;
@@ -46,7 +46,7 @@
   #
   # or
   #
-  #  /etc/profiles/per-user/josean/etc/profile.d/hm-session-vars.sh
+  #  /etc/profiles/per-user/<username>/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
     # EDITOR = "emacs";

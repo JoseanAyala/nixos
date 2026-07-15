@@ -3,9 +3,9 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./modules/1password.nix
-      ./modules/audio.nix
-      ./modules/kde.nix
+      ../../modules/nixos/1password.nix
+      ../../modules/nixos/audio.nix
+      ../../modules/nixos/kde.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -34,7 +34,7 @@
   users.defaultUserShell = pkgs.fish;
   users.users.${username} = {
     isNormalUser = true;
-    description = "Josean";
+    description = username;
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       git

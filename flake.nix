@@ -1,5 +1,5 @@
 {
-  description = "Home Manager configuration of Josean";
+  description = "NixOS and Home Manager configuration";
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
@@ -23,24 +23,24 @@
     {
       # System config
       nixosConfigurations = {
-          ${hostname} = lib.nixosSystem {
-            inherit system;
-            specialArgs = {
-              inherit username hostname;
-            };
-            modules = [ ./configuration.nix ];
+        ${hostname} = lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit username hostname;
           };
+          modules = [ ./hosts/josean-nixos/configuration.nix ];
         };
+      };
 
       # User config
       homeConfigurations = {
-          ${username} = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            extraSpecialArgs = {
-              inherit username hostname;
-            };
-            modules = [ ./home.nix ];
+        ${username} = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit username hostname;
           };
+          modules = [ ./users/josean/home.nix ];
         };
+      };
     };
 }
