@@ -1,6 +1,6 @@
-# Editor
-set -gx EDITOR nvim
-set -gx VISUAL nvim
+function fish_greeting
+    fastfetch
+end
 
 # fzf
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'

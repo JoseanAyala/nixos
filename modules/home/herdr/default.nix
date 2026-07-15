@@ -4,5 +4,5 @@
       herdr
     ];
   };
-  xdg.configFile."herdr".source = ./config;
+  xdg.configFile."herdr/config.toml".source = ./config/config.toml;
 }
