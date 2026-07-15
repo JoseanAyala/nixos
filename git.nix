@@ -1,6 +1,6 @@
-{ pkgs, lib, ... }: {
+{ pkgs, ... }: {
   home.packages = [
-      pkgs.gh
-      pkgs.lazygit
-    ];
+    pkgs.gh
+    pkgs.lazygit
+  ];
 }
