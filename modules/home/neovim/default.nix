@@ -13,7 +13,7 @@
       tree-sitter
 
       # -----------------------------------------------
-      # Mason uninstalled in config, let nix manage LSP
+      # Let nix manage LSPs
 
       # Nix tooling
       nil
@@ -24,6 +24,11 @@
       lua-language-server
       stylua
     ];
+
+    sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
 
     shellAliases = {
       vi = "nvim";
