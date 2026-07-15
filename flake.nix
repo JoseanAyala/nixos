@@ -16,7 +16,6 @@
       system = "x86_64-linux";
       username = "josean";
       hostname = "josean-nixos";
-
       lib = nixpkgs.lib;
       pkgs = nixpkgs.legacyPackages.${system};
     in
@@ -28,7 +27,7 @@
           specialArgs = {
             inherit username hostname;
           };
-          modules = [ ./hosts/josean-nixos/configuration.nix ];
+          modules = [ (./hosts + "/${hostname}/configuration.nix") ];
         };
       };
 
@@ -39,7 +38,7 @@
           extraSpecialArgs = {
             inherit username hostname;
           };
-          modules = [ ./users/josean/home.nix ];
+          modules = [ (./users + "/${username}/home.nix") ];
         };
       };
     };

@@ -32,6 +32,7 @@
   # Enable the fish shell system-wide
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
+
   users.users.${username} = {
     isNormalUser = true;
     description = username;

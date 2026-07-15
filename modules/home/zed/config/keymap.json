@@ -1,0 +1,149 @@
+[
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      // --- LSP ---
+      "g r": "editor::FindAllReferences",
+      // "g r r": null,
+      // "g r n": null,
+      // "g r i": null,
+      // "g r a": null,
+      "g d": "editor::GoToDefinition",
+      "g shift-d": "editor::GoToDeclaration",
+      "g shift-i": "editor::GoToImplementation",
+      "g y": "editor::GoToTypeDefinition",
+      "shift-k": "editor::Hover",
+
+      // --- leader b: buffers ---
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+      "space b b": "pane::AlternateFile",
+      "space b d": "pane::CloseActiveItem",
+      "space b o": "pane::CloseInactiveItems",
+
+      // --- window navigation ---
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
+
+      "ctrl-s": "workspace::Save",
+
+      // --- leader: top level ---
+      "space space": "file_finder::Toggle", // find files
+      "space ,": "tab_switcher::Toggle", // switch buffer
+      "space /": "pane::DeploySearch", // grep
+      "space :": "command_palette::Toggle", // command history
+      "space e": "project_panel::ToggleFocus", // explorer
+      "space shift-e": "project_panel::ToggleFocus",
+      "space -": "pane::SplitDown", // split below
+      "space |": "pane::SplitRight", // split right
+
+      // --- leader f: file / find ---
+      "space f f": "file_finder::Toggle",
+      "space f r": "file_finder::Toggle", // recent files
+      "space f b": "tab_switcher::Toggle",
+      "space f n": "workspace::NewFile",
+      "space f p": "projects::OpenRecent",
+
+      "space t": "terminal_panel::ToggleFocus",
+
+      // --- leader s: search ---
+      "space s g": "pane::DeploySearch",
+      "space s w": "pane::DeploySearch", // seeded from selection/cursor
+      "space s s": "outline::Toggle", // document symbols
+      "space s shift-s": "project_symbols::Toggle",
+      "space s d": "diagnostics::Deploy",
+      "space s r": ["pane::DeploySearch", { "replace_enabled": true }],
+
+      // --- leader c: code ---
+      "space c a": "editor::ToggleCodeActions",
+      "space c r": "editor::Rename",
+      "space c f": "editor::Format",
+      "space c d": "editor::Hover", // line diagnostics
+      "space c s": "outline::Toggle",
+
+      // --- leader g: git ---
+      "space g g": "git_panel::ToggleFocus",
+      "space g b": "editor::ToggleGitBlameInline",
+      "space g shift-b": "editor::OpenPermalinkToLine",
+
+      // --- leader x: diagnostics / quickfix ---
+      "space x x": "diagnostics::Deploy",
+
+      // --- leader u: ui toggles ---
+      "space u w": "editor::ToggleSoftWrap",
+      "space u l": "editor::ToggleLineNumbers",
+      "space u h": "editor::ToggleInlayHints",
+
+      // --- leader w: windows ---
+      "space w d": "pane::CloseActiveItem",
+      "space w w": "workspace::ActivateNextPane",
+      "space w s": "pane::SplitDown",
+      "space w v": "pane::SplitRight",
+
+      // --- leader a: ai ---
+      "space a i": "agent::ToggleFocus",
+
+      // --- misc ---
+      "space q q": "workspace::CloseWindow",
+    }
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      // keep the selection after indent/outdent, like LazyVim
+      ">": ["workspace::SendKeystrokes", "> g v"],
+      "<": ["workspace::SendKeystrokes", "< g v"],
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp"
+    }
+  },
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      "ctrl-s": "workspace::Save",
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp"
+    }
+  },
+  {
+    // Leader bindings that should still work when no editor is focused
+    // (project panel, empty pane, terminal panel, etc).
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      "space space": "file_finder::Toggle",
+      "space /": "pane::DeploySearch",
+      "space e": "project_panel::ToggleFocus",
+      "space f f": "file_finder::Toggle",
+      "space g g": "git_panel::ToggleFocus"
+    }
+  },
+  {
+    // ctrl-hjkl must work *inside* the docks too, otherwise it's a one-way trip:
+    // Zed's directional nav is dock-aware from the center pane, but the panels
+    // are not VimControl so the bindings above don't reach them.
+    "context": "Dock || ProjectPanel || GitPanel || OutlinePanel || Terminal || AgentPanel",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      // vim-ish navigation in the explorer, plus <leader>e / <esc> to leave
+      "space e": "workspace::ToggleLeftDock",
+      "escape": "workspace::ToggleLeftDock",
+      "a": "project_panel::NewFile",
+      "shift-a": "project_panel::NewDirectory",
+      "r": "project_panel::Rename",
+      "d": "project_panel::Delete",
+      "x": "project_panel::Cut",
+      "y": "project_panel::Copy",
+      "p": "project_panel::Paste"
+    }
+  }
+]

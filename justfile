@@ -20,6 +20,13 @@ user:
     echo "Rebuilding Home Manager Profile..."
     home-manager switch --flake {{flake_dir}}#{{user}}
 
+# Rebuild Home Manager profile and back up conflicting files
+user-backup backup="hm.back":
+    echo "Staging files in Git..."
+    git add .
+    echo "Rebuilding Home Manager Profile with backup extension {{backup}}..."
+    home-manager switch --flake {{flake_dir}}#{{user}} -b {{backup}}
+
 # Update all Flake locks and inputs
 update:
     nix flake update

@@ -1,0 +1,134 @@
+[bar.default]
+center = [ "workspaces" ]
+end = [
+    "media",
+    "tray",
+    "notifications",
+    "clipboard",
+    "network",
+    "bluetooth",
+    "brightness",
+    "battery",
+    "control-center",
+    "session",
+    "clock",
+    "volume"
+]
+position = "bottom"
+scale = 1.2500000111758709
+start = [ "launcher", "wallpaper", "temp" ]
+thickness = 46
+
+[battery.device."/org/freedesktop/UPower/devices/battery_hidpp_battery_0"]
+warning_threshold = 5
+
+[dock]
+pinned = [ "firefox" ]
+
+[location]
+auto_locate = true
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "lockscreen-login-box@DP-1", "lockscreen-login-box@DP-3" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-1"]
+    box_height = 70.0
+    box_width = 400.0
+    cx = 1720.0
+    cy = 1321.0
+    output = "DP-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        input_opacity = 1.0
+        input_radius = 6.0
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_password_hint = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-3"]
+    box_height = 70.0
+    box_width = 400.0
+    cx = 1720.0
+    cy = 1321.0
+    output = "DP-3"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-3".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        input_opacity = 1.0
+        input_radius = 6.0
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_password_hint = true
+
+[shell]
+ui_scale = 1.2500000111758709
+
+    [shell.animation]
+    speed = 1.2500000186264515
+
+[theme]
+builtin = "Tokyo-Night"
+community_palette = "Gruber Darker"
+mode = "dark"
+source = "builtin"
+wallpaper_scheme = "m3-content"
+
+    [theme.templates]
+    builtin_ids = [ "btop", "ghostty", "hyprland", "qt" ]
+    community_ids = [ "zed", "discord" ]
+
+[wallpaper.default]
+path = "/home/josean/Pictures/Wallpapers/japanese2.png"
+
+[wallpaper.last]
+path = "/home/josean/Pictures/Wallpapers/japanese2.png"
+
+[wallpaper.monitors.DP-3]
+path = "/home/josean/Pictures/Wallpapers/japanese2.png"
+
+[widget.clipboard]
+enabled = false
+
+[widget.clock]
+format = "{:%-I:%M %p}"
+
+[widget.control-center]
+enabled = false
+
+[widget.media]
+enabled = false
+
+[widget.network]
+enabled = true
+show_label = false
+
+[widget.session]
+enabled = false
+
+[widget.volume]
+font_weight = 400
+show_label = false
+
+[widget.wallpaper]
+enabled = false
+
+[widget.workspaces]
+scale = 1.25
