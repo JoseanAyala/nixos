@@ -65,10 +65,7 @@ hl.window_rule({
 		title = "negative:^(Moving.*|Create New.*|Extract.*|Compress.*|Copying.*|Progress.*|Configure.*|Properties.*|Choose\\sApplication.*)$",
 	},
 	float = true,
-	move = {
-		"max(0, min(cursor_x - 650, monitor_w - 1320))",
-		"max(0, min(cursor_y - 50, monitor_h - 820))",
-	},
+	center = true,
 	size = "1300 800",
 })
 

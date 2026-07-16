@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     # Default file manager
@@ -23,10 +23,6 @@
 
     # Removable-media auto-mount agent (see autostart.lua + services.udisks2)
     udiskie
-
-    # qt6ct provides the Qt6 platform-theme plugin, reads the Noctalia color scheme
-    qt6Packages.qt6ct
-    libsForQt5.qt5ct
   ];
 
   home.pointerCursor = {
@@ -55,16 +51,11 @@
     };
   };
 
-  # Qt apps (Dolphin, Gwenview, Okular, Ark) inherit the Noctalia color scheme.
+  # Qt apps (Dolphin, Gwenview, Okular, Ark) follow the Noctalia palette via the
+  # KDE platform theme.
   qt = {
     enable = true;
-    platformTheme.name = "qt6ct";
-    qt6ctSettings.Appearance = {
-      style = "Fusion";
-      icon_theme = "Papirus-Dark";
-      custom_palette = true;
-      color_scheme_path = "${config.home.homeDirectory}/.config/qt6ct/colors/noctalia.conf";
-      standard_dialogs = "xdgdesktopportal";
-    };
+    platformTheme.name = "kde"; # pulls in kdePackages.plasma-integration
+    style.name = "breeze"; # pulls in the Breeze widget style
   };
 }
