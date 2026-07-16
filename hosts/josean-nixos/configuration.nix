@@ -12,6 +12,7 @@
     ../../modules/nixos/audio.nix
     ../../modules/nixos/hyprland.nix
     ../../modules/nixos/nvidia.nix
+    ../../modules/nixos/steam.nix
   ];
 
   boot.loader.systemd-boot.enable = true;

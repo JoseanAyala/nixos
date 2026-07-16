@@ -2,6 +2,7 @@
   imports = [
     ../../modules/home/cli.nix
     ../../modules/home/desktop
+    ../../modules/home/discord.nix
     ../../modules/home/firefox.nix
     ../../modules/home/fish
     ../../modules/home/ghostty
