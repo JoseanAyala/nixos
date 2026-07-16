@@ -10,7 +10,21 @@ hl.window_rule({
 
 -- Gaming
 local gamingApps = "^(steam_app.*|gamescope)$"
-local gamingWorkspace = "name:gaming"
+local gamingWorkspace = 10
+
+-- Dedicated gaming workspace: clean edge-to-edge surface (no gaps/borders/rounding).
+hl.workspace_rule({
+	workspace = tostring(gamingWorkspace),
+	gaps_in = 0,
+	gaps_out = 0,
+	no_border = true,
+	no_rounding = true,
+	decorate = false,
+})
+
+-- NOTE: Allow tearing for games to reduce input latency (only tears in fullscreen).
+-- Requires general.allow_tearing = true.
+hl.window_rule({ match = { content = "game" }, immediate = true })
 
 hl.window_rule({ match = { content = "game" }, workspace = gamingWorkspace })
 hl.window_rule({ match = { class = gamingApps }, workspace = gamingWorkspace })
@@ -44,10 +58,6 @@ hl.window_rule({
 	fullscreen = false,
 	fullscreen_state = 0,
 })
-
--- Allow tearing for games to reduce input latency (only tears in fullscreen).
--- Requires general.allow_tearing = true.
-hl.window_rule({ match = { content = "game" }, immediate = true })
 
 -- Apps
 local primaryWorkspace = 1
