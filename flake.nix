@@ -7,8 +7,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Not following nixpkgs on purpose: keeps Noctalia's Cachix binary cache
-    # usable (see modules/nixos/noctalia.nix) so v5 downloads prebuilt.
     noctalia.url = "github:noctalia-dev/noctalia";
   };
 
@@ -17,7 +15,7 @@
     let
       system = "x86_64-linux";
       username = "josean";
-      hostname = "josean-nixos";
+      hostname = "la-maquina";
       inherit (nixpkgs) lib;
       pkgs = import nixpkgs {
         inherit system;

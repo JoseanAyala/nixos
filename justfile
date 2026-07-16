@@ -1,6 +1,6 @@
 # Set global variables
 flake_dir := "."
-host := "josean-nixos"
+host := "la-maquina"
 user := "josean"
 
 # Default recipe runs both system and user configurations
