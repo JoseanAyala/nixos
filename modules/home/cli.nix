@@ -10,5 +10,6 @@
     eza
     trash-cli
     claude-code
+    spotify
   ];
 }

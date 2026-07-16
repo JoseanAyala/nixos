@@ -7,10 +7,13 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Not following nixpkgs on purpose: keeps Noctalia's Cachix binary cache
+    # usable (see modules/nixos/noctalia.nix) so v5 downloads prebuilt.
+    noctalia.url = "github:noctalia-dev/noctalia";
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }:
+    inputs@{ nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
       username = "josean";
@@ -19,6 +22,8 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
+        # Adds pkgs.noctalia (v5); nixpkgs' own noctalia-shell is still v4.
+        overlays = [ inputs.noctalia.overlays.default ];
       };
     in
     {
@@ -27,7 +32,7 @@
         ${hostname} = lib.nixosSystem {
           inherit system;
           specialArgs = {
-            inherit username hostname;
+            inherit username hostname inputs;
           };
           modules = [ (./hosts + "/${hostname}/configuration.nix") ];
         };
@@ -38,7 +43,7 @@
         ${username} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit username hostname;
+            inherit username hostname inputs;
           };
           modules = [ (./users + "/${username}/home.nix") ];
         };

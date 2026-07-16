@@ -1,3 +1,5 @@
+{ config, ... }:
 {
-  xdg.configFile."hypr".source = ./config;
+  xdg.configFile."hypr".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/modules/home/hypr/config";
 }

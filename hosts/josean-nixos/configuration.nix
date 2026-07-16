@@ -10,7 +10,7 @@
     ./hardware-configuration.nix
     ../../modules/nixos/1password.nix
     ../../modules/nixos/audio.nix
-    ../../modules/nixos/kde.nix
+    ../../modules/nixos/hyprland.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -18,9 +18,13 @@
 
   networking = {
     hostName = hostname;
-    wireless.enable = true; # Enables wireless support via wpa_supplicant.
+    wireless.enable = true;
     networkmanager.enable = true;
   };
+
+  hardware.bluetooth.enable = true;
+  services.upower.enable = true;
+  services.power-profiles-daemon.enable = true;
 
   time.timeZone = "America/Puerto_Rico";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -39,6 +43,7 @@
   # Enable the fish shell system-wide
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
+
   users.users.${username} = {
     isNormalUser = true;
     description = username;
