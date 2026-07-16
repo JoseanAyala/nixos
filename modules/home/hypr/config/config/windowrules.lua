@@ -45,6 +45,10 @@ hl.window_rule({
 	fullscreen_state = 0,
 })
 
+-- Allow tearing for games to reduce input latency (only tears in fullscreen).
+-- Requires general.allow_tearing = true.
+hl.window_rule({ match = { content = "game" }, immediate = true })
+
 -- Apps
 local primaryWorkspace = 1
 

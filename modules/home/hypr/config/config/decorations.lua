@@ -7,6 +7,7 @@ hl.config({
 		border_size = 1,
 		extend_border_grab_area = 10,
 		resize_on_border = true,
+		allow_tearing = true, -- required for the `immediate` game rule; only tears in fullscreen
 		col = {
 			-- Active window: light font color. Inactive: transparent (no border).
 			active_border = { colors = { Colors.on_surface } },
