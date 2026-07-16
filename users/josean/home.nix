@@ -12,13 +12,11 @@
     # ../../modules/home/noctalia
     ../../modules/home/zed
   ];
+
   home = {
     inherit username;
     homeDirectory = "/home/${username}";
     stateVersion = "25.11"; # Please read the comment before changing.
-    sessionVariables = {
-      # EDITOR = "emacs";
-    };
   };
 
   # Let Home Manager install and manage itself.

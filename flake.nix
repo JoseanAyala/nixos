@@ -15,8 +15,11 @@
       system = "x86_64-linux";
       username = "josean";
       hostname = "josean-nixos";
-      pkgs = nixpkgs.legacyPackages.${system};
       inherit (nixpkgs) lib;
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
     in
     {
       # System config

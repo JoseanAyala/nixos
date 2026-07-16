@@ -9,5 +9,6 @@
     fzf
     eza
     trash-cli
+    claude-code
   ];
 }

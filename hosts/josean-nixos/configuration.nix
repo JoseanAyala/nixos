@@ -15,6 +15,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
   networking = {
     hostName = hostname;
     wireless.enable = true; # Enables wireless support via wpa_supplicant.
@@ -49,6 +50,9 @@
       git
     ];
   };
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = [
     "nix-command"
