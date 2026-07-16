@@ -1,6 +1,7 @@
 { username, ... }: {
   imports = [
     ../../modules/home/cli.nix
+    ../../modules/home/desktop
     ../../modules/home/firefox.nix
     ../../modules/home/fish
     ../../modules/home/ghostty

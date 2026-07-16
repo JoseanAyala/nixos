@@ -11,6 +11,7 @@
     ../../modules/nixos/1password.nix
     ../../modules/nixos/audio.nix
     ../../modules/nixos/hyprland.nix
+    ../../modules/nixos/nvidia.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -23,8 +24,12 @@
   };
 
   hardware.bluetooth.enable = true;
-  services.upower.enable = true;
-  services.power-profiles-daemon.enable = true;
+
+  services = {
+    upower.enable = true;
+    power-profiles-daemon.enable = true;
+    udisks2.enable = true;
+  };
 
   time.timeZone = "America/Puerto_Rico";
   i18n.defaultLocale = "en_US.UTF-8";
