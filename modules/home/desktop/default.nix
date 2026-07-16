@@ -23,7 +23,17 @@
 
     # Removable-media auto-mount agent (see autostart.lua + services.udisks2)
     udiskie
+
+    # Provides the xdg-user-dirs-update CLI on PATH
+    xdg-user-dirs
   ];
+
+  # Standard XDG user directories (Desktop, Documents, Downloads, ...).
+  # Home Manager writes ~/.config/user-dirs.dirs and creates the folders.
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
 
   home.pointerCursor = {
     enable = true;

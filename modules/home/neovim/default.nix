@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   home = {
     packages = with pkgs; [
@@ -36,5 +36,5 @@
     };
   };
 
-  xdg.configFile."nvim".source = ./config;
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink ./config;
 }

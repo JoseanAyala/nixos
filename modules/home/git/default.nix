@@ -1,3 +1,3 @@
 {
-  xdg.configFile."git".source = ./config;
+  xdg.configFile."git".source = ./config/.gitconfig;
 }
