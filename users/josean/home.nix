@@ -1,5 +1,6 @@
 { username, ... }: {
   imports = [
+    ../../modules/home/apps.nix
     ../../modules/home/cli.nix
     ../../modules/home/desktop.nix
     ../../modules/home/firefox.nix
