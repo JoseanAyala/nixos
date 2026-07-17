@@ -25,11 +25,15 @@
     udiskie
 
     # Graphical disk manager (partition, format, SMART, ATA secure-erase).
-    # Front-end to udisks2; needs the polkit agent below to authorize actions.
     gnome-disk-utility
 
     # Provides the xdg-user-dirs-update CLI on PATH
     xdg-user-dirs
+
+    # GTK theming GUI (Noctalia GTK prereq).
+    nwg-look
+    # Runs Noctalia's KColorScheme post-hook (kde/apply.py)
+    python3
   ];
 
   # Standard XDG user directories (Desktop, Documents, Downloads, ...).
@@ -48,7 +52,6 @@
     size = 24;
   };
 
-  # GTK apps: dark Adwaita-style theme + Papirus icons.
   gtk = {
     enable = true;
     theme = {
@@ -59,17 +62,15 @@
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
-    gtk4.theme = {
-      name = "adw-gtk3-dark";
-      package = pkgs.adw-gtk3;
-    };
+    # Opt GTK4 out of adw-gtk3 so Noctalia owns gtk-4.0/gtk.css and its colors apply.
+    gtk4.theme = null;
   };
 
-  # Qt apps (Dolphin, Gwenview, Okular, Ark) follow the Noctalia palette via the
-  # KDE platform theme.
+  # qt apps (dolphin, gwenview, okular, ark) follow the noctalia palette via the
+  # kde platform theme (path: kde plasma direct kcolorscheme integration).
   qt = {
     enable = true;
-    platformTheme.name = "kde"; # pulls in kdePackages.plasma-integration
-    style.name = "breeze"; # pulls in the Breeze widget style
+    platformTheme.name = "kde";
+    style.name = "breeze";
   };
 }
