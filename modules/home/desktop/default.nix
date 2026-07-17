@@ -24,6 +24,10 @@
     # Removable-media auto-mount agent (see autostart.lua + services.udisks2)
     udiskie
 
+    # Graphical disk manager (partition, format, SMART, ATA secure-erase).
+    # Front-end to udisks2; needs the polkit agent below to authorize actions.
+    gnome-disk-utility
+
     # Provides the xdg-user-dirs-update CLI on PATH
     xdg-user-dirs
   ];
