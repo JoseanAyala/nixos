@@ -72,25 +72,4 @@
     platformTheme.name = "kde"; # pulls in kdePackages.plasma-integration
     style.name = "breeze"; # pulls in the Breeze widget style
   };
-
-  # Polkit authentication agent. Hyprland doesn't start one on its own, so any
-  # GUI action needing elevation (GNOME Disks format, mounting via udisks, etc.)
-  # fails with "Not authorized" until an agent is running to prompt for a
-  # password. Mirrors the unit shipped with the package, bound to the Wayland
-  # graphical session so it starts/stops with the compositor.
-  systemd.user.services.hyprpolkitagent = {
-    Unit = {
-      Description = "Hyprland Polkit Authentication Agent";
-      PartOf = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
-      ConditionEnvironment = "WAYLAND_DISPLAY";
-    };
-    Service = {
-      ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
-      Slice = "session.slice";
-      TimeoutStopSec = "5sec";
-      Restart = "on-failure";
-    };
-    Install.WantedBy = [ "graphical-session.target" ];
-  };
 }

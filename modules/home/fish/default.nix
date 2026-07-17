@@ -22,6 +22,7 @@
       gg = "lazygit";
       cc = "claude";
       z = "cd";
+      h = "herdr";
     };
 
     functions = {
