@@ -5,11 +5,11 @@
     ../../modules/home/discord.nix
     ../../modules/home/firefox.nix
     ../../modules/home/fish
+    ../../modules/home/fonts.nix
     ../../modules/home/ghostty
     ../../modules/home/git
     ../../modules/home/herdr
     ../../modules/home/hypr
-    ../../modules/home/lazygit
     ../../modules/home/neovim
     ../../modules/home/noctalia
     ../../modules/home/zed

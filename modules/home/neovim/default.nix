@@ -24,16 +24,6 @@
       lua-language-server
       stylua
     ];
-
-    sessionVariables = {
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-    };
-
-    shellAliases = {
-      vi = "nvim";
-      vim = "nvim";
-    };
   };
 
   xdg.configFile."nvim".source =
