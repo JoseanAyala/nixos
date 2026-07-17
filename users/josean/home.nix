@@ -3,6 +3,7 @@
     ../../modules/home/apps.nix
     ../../modules/home/cli.nix
     ../../modules/home/desktop.nix
+    ../../modules/home/file-manager.nix
     ../../modules/home/firefox.nix
     ../../modules/home/fish.nix
     ../../modules/home/fonts.nix
