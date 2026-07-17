@@ -1,13 +1,12 @@
 { username, ... }: {
   imports = [
     ../../modules/home/cli.nix
-    ../../modules/home/desktop
-    ../../modules/home/discord.nix
+    ../../modules/home/desktop.nix
     ../../modules/home/firefox.nix
-    ../../modules/home/fish
+    ../../modules/home/fish.nix
     ../../modules/home/fonts.nix
-    ../../modules/home/ghostty
-    ../../modules/home/git
+    ../../modules/home/ghostty.nix
+    ../../modules/home/git.nix
     ../../modules/home/herdr
     ../../modules/home/hypr
     ../../modules/home/neovim
