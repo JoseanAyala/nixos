@@ -1,39 +1,35 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    # Provides the xdg-user-dirs-update CLI on PATH
-    xdg-user-dirs
+  home = {
+    packages = with pkgs; [
+      # Provides the xdg-user-dirs-update CLI on PATH
+      xdg-user-dirs
 
-    # GTK theming GUI (Noctalia GTK prereq).
-    nwg-look
-    # Runs Noctalia's KColorScheme post-hook (kde/apply.py)
-    python3
-  ];
+      # GTK theming GUI (Noctalia GTK prereq).
+      nwg-look
 
-  # Standard XDG user directories (Desktop, Documents, Downloads, ...).
-  # Home Manager writes ~/.config/user-dirs.dirs and creates the folders.
-  xdg.userDirs = {
-    enable = true;
-    createDirectories = true;
-  };
+      # Runs Noctalia's KColorScheme post-hook (kde/apply.py)
+      python3
+    ];
 
-  # KDE's Qt platform theme (set below) reads the cursor from kcminputrc; without
-  # it, it forces the (uninstalled) "breeze" cursor and KDE apps like Dolphin fall
-  # back to the red-X cursor. Point it at the same Bibata theme as the rest of the
-  # session. (home.pointerCursor has no KDE backend, so this file is required.)
-  home.file.".config/kcminputrc".text = ''
-    [Mouse]
-    cursorTheme=Bibata-Modern-Ice
-    cursorSize=24
-  '';
+    # KDE's Qt platform theme (set below) reads the cursor from kcminputrc; without
+    # it, it forces the (uninstalled) "breeze" cursor and KDE apps like Dolphin fall
+    # back to the red-X cursor. Point it at the same Bibata theme as the rest of the
+    # session. (home.pointerCursor has no KDE backend, so this file is required.)
+    file.".config/kcminputrc".text = ''
+      [Mouse]
+      cursorTheme=Bibata-Modern-Ice
+      cursorSize=24
+    '';
 
-  home.pointerCursor = {
-    enable = true;
-    gtk.enable = true;
-    x11.enable = true;
-    name = "Bibata-Modern-Ice";
-    package = pkgs.bibata-cursors;
-    size = 24;
+    pointerCursor = {
+      enable = true;
+      gtk.enable = true;
+      x11.enable = true;
+      name = "Bibata-Modern-Ice";
+      package = pkgs.bibata-cursors;
+      size = 24;
+    };
   };
 
   gtk = {

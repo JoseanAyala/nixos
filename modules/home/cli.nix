@@ -9,10 +9,12 @@
     eza
     trash-cli
     claude-code
+    bat
 
     # TUI file manager — opens files via xdg/mimeapps.list (no ksycoca needed)
     yazi
     poppler-utils # PDF preview for yazi
-    imagemagick # image preview for yazi (video previews use ffmpegthumbnailer)
+    imagemagick # image preview for yazi
+    ffmpegthumbnailer # video thumbnails
   ];
 }

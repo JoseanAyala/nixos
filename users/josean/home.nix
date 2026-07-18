@@ -22,6 +22,13 @@
     stateVersion = "25.11"; # Please read the comment before changing.
   };
 
+  # Standard XDG user directories (Desktop, Documents, Downloads, ...).
+  # Home Manager writes ~/.config/user-dirs.dirs and creates the folders.
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
