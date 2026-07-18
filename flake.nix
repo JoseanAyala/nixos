@@ -7,7 +7,16 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    noctalia.url = "github:noctalia-dev/noctalia";
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -20,8 +29,15 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        # Adds pkgs.noctalia (v5); nixpkgs' own noctalia-shell is still v4.
-        overlays = [ inputs.noctalia.overlays.default ];
+        overlays = [
+          # Adds pkgs.noctalia (v5); nixpkgs' own noctalia-shell is still v4.
+          inputs.noctalia.overlays.default
+
+          # Adds pkgs.firefox-addons.* — built against THIS pkgs, so our
+          # allowUnfree applies (the flake's packages output evaluates against
+          # its own vanilla nixpkgs and refuses the unfree 1Password addon).
+          inputs.firefox-addons.overlays.default
+        ];
       };
     in
     {

@@ -1,27 +1,24 @@
-{ ... }:
-let
-  moz = slug: "https://addons.mozilla.org/firefox/downloads/latest/${slug}/latest.xpi";
-in
+{ pkgs, ... }:
 {
   programs.firefox = {
     enable = true;
 
     configPath = ".mozilla/firefox";
 
-    policies = {
-      ExtensionSettings = {
-        "uBlock0@raymondhill.net" = {
-          installation_mode = "normal_installed";
-          install_url = moz "ublock-origin";
-          private_browsing = true;
-        };
+    profiles.default = {
+      isDefault = true;
+      extensions.packages = with pkgs.firefox-addons; [
+        ublock-origin
+        onepassword-password-manager
+      ];
+    };
 
-        "{d634138d-c276-4fc8-924b-40a0ea21d284}" = {
-          installation_mode = "normal_installed";
-          install_url = moz "1password-x-password-manager";
-          private_browsing = true;
-        };
-      };
+    policies = {
+      OfferToSaveLogins = false;
+      DisableTelemetry = true;
+      DisableFirefoxStudies = true;
+      DisablePocket = true;
+      DontCheckDefaultBrowser = true;
     };
   };
 }

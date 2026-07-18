@@ -14,8 +14,7 @@
 
     # KDE's Qt platform theme (set below) reads the cursor from kcminputrc; without
     # it, it forces the (uninstalled) "breeze" cursor and KDE apps like Dolphin fall
-    # back to the red-X cursor. Point it at the same Bibata theme as the rest of the
-    # session. (home.pointerCursor has no KDE backend, so this file is required.)
+    # back to the red-X cursor.
     file.".config/kcminputrc".text = ''
       [Mouse]
       cursorTheme=Bibata-Modern-Ice
@@ -42,7 +41,7 @@
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
-    # Opt GTK4 out of adw-gtk3 so Noctalia owns gtk-4.0/gtk.css and its colors apply.
+    # Noctalia owns gtk-4.0/gtk.css and its colors apply.
     gtk4.theme = null;
   };
 

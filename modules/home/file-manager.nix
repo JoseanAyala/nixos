@@ -28,9 +28,7 @@
     gnome-disk-utility
   ];
 
-  # Default apps for double-click in Dolphin. Without these, images resolve to
-  # Okular's NoDisplay kimgio helper (won't launch) and text has no reliable
-  # handler. Point images at Gwenview and text/code at Zed.
+  # Default apps for double-click in Dolphin.
   xdg.mimeApps = {
     enable = true;
     defaultApplications =
@@ -56,7 +54,6 @@
 
         "application/pdf" = [ "org.kde.okular.desktop" ];
 
-        # Preserve the Claude Code URL handler that was auto-registered.
         "x-scheme-handler/claude-cli" = [ "claude-code-url-handler.desktop" ];
       };
   };
@@ -66,8 +63,8 @@
   # can walk an XDG applications.menu — which no package installs on a non-Plasma
   # session, so the cache indexed ZERO apps and Dolphin returned "0 offers" for
   # every mimetype (nothing would open). Reuse the stock menu that plasma-workspace
-  # ships (already in the system closure via plasma6) instead of hand-writing one —
-  # the upstream-recommended fix, nixpkgs#409986. uwsm sets XDG_MENU_PREFIX=hyprland-
+  # ships (referencing it here pulls it into the home closure) instead of
+  # hand-writing one — the upstream-recommended fix, nixpkgs#409986. uwsm sets XDG_MENU_PREFIX=hyprland-
   # so provide that name; the bare name covers apps launched without the prefix.
   xdg.configFile =
     let

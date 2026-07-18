@@ -18,7 +18,9 @@
 
   networking = {
     hostName = hostname;
-    wireless.enable = true;
+    # NetworkManager runs its own wpa_supplicant; do NOT also set
+    # networking.wireless.enable — that starts a second, standalone supplicant
+    # that fights NetworkManager over the wifi interface.
     networkmanager.enable = true;
   };
 
@@ -63,10 +65,21 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix = {
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 14d";
+    };
+
+    # Deduplicate identical store files via hardlinks, on a schedule.
+    optimise.automatic = true;
+  };
 
   system.stateVersion = "26.05"; # Did you read the comment?
 }

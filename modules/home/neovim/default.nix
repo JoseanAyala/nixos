@@ -1,15 +1,14 @@
 { pkgs, config, ... }:
 {
   home = {
+    # Only neovim-specific tooling lives here. Shared CLI tools this config
+    # also uses (git, lazygit, ripgrep, fd) are owned by cli.nix / git.nix so
+    # removing this module can't break the shell setup.
     packages = with pkgs; [
       neovim
-      git
       gcc
       gnumake
       unzip
-      ripgrep
-      fd
-      lazygit
       tree-sitter
 
       # -----------------------------------------------
