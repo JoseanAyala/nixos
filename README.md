@@ -2,7 +2,7 @@
 
 # ❄️ dotfiles
 
-**NixOS + Home Manager configuration`**
+**NixOS + Home Manager configuration**
 
 Declarative, flake-based, and rebuilt with a single `just` command.
 
