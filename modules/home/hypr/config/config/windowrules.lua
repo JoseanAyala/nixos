@@ -1,4 +1,6 @@
--- Picture-in-Picture
+-----------------------------------------------------
+-- PICTURE-IN-PICTURE
+
 hl.window_rule({
 	match = { title = "^([Pp]icture[-\\s]?[Ii]n[-\\s]?[Pp]icture)(.*)$" },
 	float = true,
@@ -8,7 +10,9 @@ hl.window_rule({
 	pin = true,
 })
 
--- Gaming
+-----------------------------------------------------
+-- GAMING
+
 local gamingApps = "^(steam_app.*|gamescope)$"
 local gamingWorkspace = 10
 
@@ -21,12 +25,12 @@ hl.workspace_rule({
 	no_rounding = true,
 	decorate = false,
 })
-
--- NOTE: Allow tearing for games to reduce input latency (only tears in fullscreen).
--- Requires general.allow_tearing = true.
-hl.window_rule({ match = { content = "game" }, immediate = true })
-
-hl.window_rule({ match = { content = "game" }, workspace = gamingWorkspace })
+hl.window_rule({
+	match = { content = "game" },
+	-- Requires general.allow_tearing = true.
+	immediate = true,
+	workspace = gamingWorkspace,
+})
 hl.window_rule({ match = { class = gamingApps }, workspace = gamingWorkspace })
 hl.window_rule({ match = { class = "^(steam)$", title = "^(Friends List)$" }, float = true })
 hl.window_rule({
@@ -55,11 +59,12 @@ hl.window_rule({
 	},
 	float = true,
 	center = true,
-	fullscreen = false,
 	fullscreen_state = 0,
 })
 
--- Apps
+-----------------------------------------------------
+-- APPS
+
 local primaryWorkspace = 1
 
 hl.window_rule({
@@ -83,20 +88,10 @@ hl.window_rule({
 	size = "1300 800",
 })
 
--- Opacity Overrides
-local terminals = "^(kitty|com\\.mitchellh\\.ghostty|[Kk]onsole|Alacritty|gnome-terminal|xfce[0-9]?-terminal)$"
+-----------------------------------------------------
+-- FLOATING
 
-hl.window_rule({ match = { class = "^(firefox|zen)$" }, opacity = "1.0 override" })
-hl.window_rule({ match = { class = terminals }, opacity = "1.0 override" }) -- override opacity in favor of terminal settings for opacity
-hl.window_rule({
-	match = { class = "^(mpv|org.kde.haruna|.*plex.*|org\\.kde\\.gwenview|.*vlc.*)$" },
-	opacity = "1.0 override",
-})
-
--- Disable blur on Ghostty so the transparent background looks like clear glass, not frosted
-hl.window_rule({ match = { class = "^(com\\.mitchellh\\.ghostty)$" }, no_blur = true })
-
--- Float Utility Windows
+-- Utility windows
 local floatApps = {
 	{ class = "^(kvantummanager|qt[56]ct|nwg-look)$" },
 	{ class = "^(org.pulseaudio.pavucontrol|blueman-manager|nm-applet|nm-connection-editor)$" },
@@ -106,9 +101,10 @@ for _, m in ipairs(floatApps) do
 	hl.window_rule({ match = m, float = true })
 end
 
+-- Default placement for floating windows
 hl.window_rule({ match = { float = true }, move = "50% 50%" })
 
--- Float Common Modals
+-- Common modal dialogs
 local modalMatches = {
 	{
 		title = "^(Open|Authentication Required|Add Folder to Workspace|Choose Files|Save As|Confirm to replace files|File Operation Progress)$",
@@ -124,14 +120,15 @@ for _, m in ipairs(modalMatches) do
 	hl.window_rule({ match = m, float = true })
 end
 
+-----------------------------------------------------
+-- FIXES
+
 -- Ignore maximize requests from all apps. You'll probably like this.
-local suppressMaximizeRule = hl.window_rule({
+hl.window_rule({
 	name = "suppress-maximize-events",
 	match = { class = ".*" },
-
 	suppress_event = "maximize",
 })
--- suppressMaximizeRule:set_enabled(false)
 
 -- Fix some dragging issues with XWayland
 hl.window_rule({
@@ -144,6 +141,5 @@ hl.window_rule({
 		fullscreen = false,
 		pin = false,
 	},
-
 	no_focus = true,
 })

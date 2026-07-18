@@ -1,5 +1,3 @@
--- Look and feel configuration
-
 hl.config({
 	general = {
 		gaps_in = 4,
@@ -31,7 +29,6 @@ hl.config({
 	decoration = {
 		rounding_power = 2.5,
 		rounding = 18,
-
 		blur = {
 			xray = true,
 			size = 2,
@@ -44,7 +41,6 @@ hl.config({
 			render_power = 4,
 			color = "rgba(00000020)",
 		},
-		-- Dim
 		dim_inactive = true,
 		dim_strength = 0.05,
 	},

@@ -1,4 +1,3 @@
--- Animations -- ML4W "Fast" preset (Material Design 3 curves)
 -- see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
 
 hl.config({
