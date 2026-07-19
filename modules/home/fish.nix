@@ -21,7 +21,6 @@
       vim = "nvim";
       gg = "lazygit";
       cc = "claude";
-      h = "herdr";
       z = "cd";
     };
 

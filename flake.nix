@@ -20,46 +20,65 @@
   };
 
   outputs =
-    inputs@{ nixpkgs, home-manager, ... }:
+    inputs@{
+      nixpkgs,
+      home-manager,
+      ...
+    }:
     let
-      system = "x86_64-linux";
       username = "josean";
-      hostname = "la-maquina";
       inherit (nixpkgs) lib;
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-        overlays = [
-          # Adds pkgs.noctalia (v5); nixpkgs' own noctalia-shell is still v4.
-          inputs.noctalia.overlays.default
 
-          # Adds pkgs.firefox-addons.* — built against THIS pkgs, so our
-          # allowUnfree applies (the flake's packages output evaluates against
-          # its own vanilla nixpkgs and refuses the unfree 1Password addon).
-          inputs.firefox-addons.overlays.default
-        ];
-      };
+      linuxOverlays = [
+        inputs.noctalia.overlays.default
+        inputs.firefox-addons.overlays.default
+      ];
+
+      mkHome =
+        {
+          system,
+          hostname,
+          modules,
+          overlays ? [ ],
+        }:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            inherit system overlays;
+            config.allowUnfree = true;
+          };
+          extraSpecialArgs = {
+            inherit username hostname inputs;
+          };
+          inherit modules;
+        };
+
     in
     {
       # System config
       nixosConfigurations = {
-        ${hostname} = lib.nixosSystem {
-          inherit system;
+        la-maquina = lib.nixosSystem {
+          system = "x86_64-linux";
           specialArgs = {
-            inherit username hostname inputs;
+            inherit username inputs;
+            hostname = "la-maquina";
           };
-          modules = [ (./hosts + "/${hostname}/configuration.nix") ];
+          modules = [ ./hosts/la-maquina/configuration.nix ];
         };
       };
 
-      # User config
+      # User config — keyed per platformk
       homeConfigurations = {
-        ${username} = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          extraSpecialArgs = {
-            inherit username hostname inputs;
-          };
-          modules = [ (./users + "/${username}/home.nix") ];
+        nixos = mkHome {
+          system = "x86_64-linux";
+          hostname = "la-maquina";
+          overlays = linuxOverlays;
+          modules = [ ./hosts/la-maquina/home.nix ];
+        };
+
+        macbook = mkHome {
+          system = "aarch64-darwin";
+          hostname = "macbook";
+          modules = [ ./hosts/macbook/home.nix ];
         };
       };
     };

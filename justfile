@@ -1,7 +1,8 @@
 # Set global variables
 flake_dir := "."
-host := "la-maquina"
-user := "josean"
+host := "la-maquina"      # nixosConfigurations key
+home_linux := "nixos"     # homeConfigurations key (Linux)
+home_darwin := "macbook"  # homeConfigurations key (macOS)
 
 # Default recipe runs both system and user configurations
 all: system user
@@ -18,12 +19,22 @@ system: stage
 # Rebuild the Home Manager user configuration
 user: stage
     echo "Rebuilding Home Manager Profile..."
-    home-manager switch --flake {{flake_dir}}#{{user}}
+    home-manager switch --flake {{flake_dir}}#{{home_linux}}
 
 # Rebuild Home Manager profile and back up conflicting files
 user-backup backup="hm.back": stage
     echo "Rebuilding Home Manager Profile with backup extension {{backup}}..."
-    home-manager switch --flake {{flake_dir}}#{{user}} -b {{backup}}
+    home-manager switch --flake {{flake_dir}}#{{home_linux}} -b {{backup}}
+
+# Rebuild the Home Manager profile on macOS
+mac: stage
+    echo "Rebuilding Home Manager Profile (macOS)..."
+    home-manager switch --flake {{flake_dir}}#{{home_darwin}}
+
+# Rebuild the macOS Home Manager profile and back up conflicting files
+mac-bak backup="hm.back": stage
+    echo "Rebuilding Home Manager Profile (macOS) with backup extension {{backup}}..."
+    home-manager switch --flake {{flake_dir}}#{{home_darwin}} -b {{backup}}
 
 # Update all Flake locks and inputs
 update:
