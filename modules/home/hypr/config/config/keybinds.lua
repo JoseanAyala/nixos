@@ -82,6 +82,8 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(noctCall .. "brightness-down"),
 -- Screen Capture (Noctalia v5 built-ins; old screen-toolkit plugin binds retired)
 hl.bind("Print", hl.dsp.exec_cmd(noctCall .. "screenshot-region"))
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd(noctCall .. "screenshot-fullscreen"))
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd(noctCall .. "screenshot-region"))
+hl.bind(mainMod .. " + SHIFT + P", hl.dsp.exec_cmd(noctCall .. "screenshot-fullscreen"))
 
 -- Theming and Wallpaper
 hl.bind(mainMod .. " + SHIFT + T", hl.dsp.exec_cmd(noctCall .. "panel-toggle wallpaper"))
