@@ -11,6 +11,7 @@
     ../../modules/nixos/1password.nix
     ../../modules/nixos/audio.nix
     ../../modules/nixos/boot.nix
+    ../../modules/nixos/display-manager.nix
     ../../modules/nixos/hyprland.nix
     ../../modules/nixos/nvidia.nix
     ../../modules/nixos/steam.nix
