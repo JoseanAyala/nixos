@@ -76,6 +76,13 @@ in
       theme = "sddm-astronaut-theme";
       # qtsvg / qtmultimedia / qtvirtualkeyboard are needed at runtime by the theme.
       extraPackages = sddmTheme.propagatedBuildInputs;
+      # The greeter runs as the `sddm` user pre-login, so it can't see the
+      # home-manager pointerCursor. Point it at the same Bibata cursor (installed
+      # system-wide below), otherwise the greeter shows no cursor at all.
+      settings.Theme = {
+        CursorTheme = "Bibata-Modern-Ice";
+        CursorSize = 24;
+      };
     };
 
     # Keymap for the greeter (Hyprland sets its own via config/input.lua).
@@ -85,6 +92,10 @@ in
     };
   };
 
-  # Installs the theme under /run/current-system/sw/share/sddm/themes.
-  environment.systemPackages = [ sddmTheme ];
+  # sddmTheme: installs the theme under /run/current-system/sw/share/sddm/themes.
+  # bibata-cursors: makes the greeter's cursor theme resolvable system-wide.
+  environment.systemPackages = [
+    sddmTheme
+    pkgs.bibata-cursors
+  ];
 }
