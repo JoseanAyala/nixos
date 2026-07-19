@@ -1,6 +1,7 @@
 { username, ... }: {
   imports = [
     ../../modules/home/apps.nix
+    ../../modules/home/audio
     ../../modules/home/cli.nix
     ../../modules/home/desktop.nix
     ../../modules/home/file-manager.nix
