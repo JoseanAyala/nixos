@@ -11,7 +11,7 @@
         style = {
           wallpapers = [ ../../assets/limine-wallpaper.jpg ];
           interface = {
-            branding = "la-maquina";
+            branding = "NixOS";
             brandingColor = "e1e2d5";
             helpColor = "6b6c63";
             helpColorBright = "d94a59";

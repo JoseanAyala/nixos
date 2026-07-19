@@ -96,13 +96,13 @@ wallpaper_scheme = "m3-content"
     community_ids = [ "zed", "discord" ]
 
 [wallpaper.default]
-path = "/home/josean/Pictures/Wallpapers/japanese2.png"
+path = "/home/josean/dotfiles/assets/japanese2.png"
 
 [wallpaper.last]
-path = "/home/josean/Pictures/Wallpapers/japanese2.png"
+path = "/home/josean/dotfiles/assets/japanese2.png"
 
 [wallpaper.monitors.DP-3]
-path = "/home/josean/Pictures/Wallpapers/japanese2.png"
+path = "/home/josean/dotfiles/assets/japanese2.png"
 
 [widget.clipboard]
 enabled = false
