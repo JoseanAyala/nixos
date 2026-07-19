@@ -1,12 +1,31 @@
 {
   boot = {
     loader = {
-      limine.enable = true;
+      limine = {
+        enable = true;
+        extraEntries = ''
+          /Windows
+              protocol: efi_chainload
+              path: guid(243c5304-98c3-40fd-aa31-2831ff4553b3):/EFI/Microsoft/Boot/bootmgfw.efi
+        '';
+        style = {
+          wallpapers = [ ../../assets/limine-wallpaper.jpg ];
+          interface = {
+            branding = "la-maquina";
+            brandingColor = "e1e2d5";
+            helpColor = "6b6c63";
+            helpColorBright = "d94a59";
+          };
+          graphicalTerminal = {
+            foreground = "e1e2d5";
+            margin = 0;
+            marginGradient = 0;
+          };
+        };
+      };
       efi.canTouchEfiVariables = true;
-      timeout = 3; # Seconds before auto-booting
     };
 
-    # Show a graphical splash screen instead of the scrolling boot log.
     plymouth.enable = true;
 
     # Silent boot.
