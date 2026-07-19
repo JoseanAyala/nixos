@@ -7,6 +7,10 @@
     enable = true;
   };
 
+  # Increase Nvidia's shader disk cache to 12GB so large games don't
+  # re-compile their shaders on every launch (avoids long loads / stutter).
+  environment.sessionVariables.__GL_SHADER_DISK_CACHE_SIZE = "12000000000";
+
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
 
