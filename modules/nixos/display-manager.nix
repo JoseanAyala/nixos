@@ -1,11 +1,5 @@
 { pkgs, ... }:
 let
-  # sddm-astronaut configured declaratively via nixpkgs' override. Mirrors the
-  # Limine approach: a static wallpaper baked into the store + hand-picked accent
-  # hexes, reusing the Limine palette so boot -> login stay cohesive.
-  #
-  # Background is a store path (world-readable) rather than a ~/ path, because
-  # SDDM renders as the `sddm` system user *before* login and can't read $HOME.
   sddmTheme = pkgs.sddm-astronaut.override {
     embeddedTheme = "astronaut";
     themeConfig = {
@@ -69,31 +63,23 @@ let
 in
 {
   services = {
-    # SDDM as a Wayland greeter (no X server needed for a pure-Wayland setup).
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
       theme = "sddm-astronaut-theme";
-      # qtsvg / qtmultimedia / qtvirtualkeyboard are needed at runtime by the theme.
       extraPackages = sddmTheme.propagatedBuildInputs;
-      # The greeter runs as the `sddm` user pre-login, so it can't see the
-      # home-manager pointerCursor. Point it at the same Bibata cursor (installed
-      # system-wide below), otherwise the greeter shows no cursor at all.
       settings.Theme = {
         CursorTheme = "Bibata-Modern-Ice";
         CursorSize = 24;
       };
     };
 
-    # Keymap for the greeter (Hyprland sets its own via config/input.lua).
     xserver.xkb = {
       layout = "us";
       variant = "";
     };
   };
 
-  # sddmTheme: installs the theme under /run/current-system/sw/share/sddm/themes.
-  # bibata-cursors: makes the greeter's cursor theme resolvable system-wide.
   environment.systemPackages = [
     sddmTheme
     pkgs.bibata-cursors
