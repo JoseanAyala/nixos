@@ -35,6 +35,7 @@
       let
         gwenview = [ "org.kde.gwenview.desktop" ];
         zed = [ "dev.zed.Zed.desktop" ];
+        vlc = [ "vlc.desktop" ];
       in
       {
         "image/png" = gwenview;
@@ -46,6 +47,16 @@
         "image/svg+xml" = gwenview;
         "image/heif" = gwenview;
         "image/avif" = gwenview;
+
+        "video/mp4" = vlc;
+        "video/x-matroska" = vlc; # .mkv
+        "video/webm" = vlc;
+        "video/quicktime" = vlc; # .mov
+        "video/x-msvideo" = vlc; # .avi
+        "video/mpeg" = vlc;
+        "video/x-flv" = vlc;
+        "video/3gpp" = vlc;
+        "video/ogg" = vlc;
 
         "text/plain" = zed;
         "application/json" = zed;
