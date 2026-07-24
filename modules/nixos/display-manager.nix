@@ -1,12 +1,18 @@
-{ pkgs, ... }:
+{ pkgs, colors, ... }:
 let
+  text = "#${colors.text}";
+  muted = "#${colors.muted}";
+  accent = "#${colors.accent}";
+  base = "#${colors.base}";
+  surface = "#${colors.surface}";
+
   sddmTheme = pkgs.sddm-astronaut.override {
     embeddedTheme = "astronaut";
     themeConfig = {
       Background = "${../../assets/wallpaper.png}";
       CropBackground = "true";
       DimBackground = "0.35";
-      DimBackgroundColor = "#1a1b26";
+      DimBackgroundColor = base;
 
       # Full-screen blurred wallpaper, transparent centered form on top.
       FullBlur = "true";
@@ -21,43 +27,42 @@ let
       HourFormat = "h:mm AP";
       DateFormat = "dddd, MMMM d";
 
-      # Palette: Limine off-white text + red accent over a Tokyo Night base.
-      HeaderTextColor = "#e1e2d5";
-      DateTextColor = "#e1e2d5";
-      TimeTextColor = "#e1e2d5";
+      HeaderTextColor = text;
+      DateTextColor = text;
+      TimeTextColor = text;
 
-      FormBackgroundColor = "#1a1b26";
-      BackgroundColor = "#1a1b26";
+      FormBackgroundColor = base;
+      BackgroundColor = base;
 
-      LoginFieldBackgroundColor = "#24283b";
-      PasswordFieldBackgroundColor = "#24283b";
-      LoginFieldTextColor = "#e1e2d5";
-      PasswordFieldTextColor = "#e1e2d5";
-      UserIconColor = "#e1e2d5";
-      PasswordIconColor = "#e1e2d5";
+      LoginFieldBackgroundColor = surface;
+      PasswordFieldBackgroundColor = surface;
+      LoginFieldTextColor = text;
+      PasswordFieldTextColor = text;
+      UserIconColor = text;
+      PasswordIconColor = text;
 
-      PlaceholderTextColor = "#6b6c63";
-      WarningColor = "#d94a59";
+      PlaceholderTextColor = muted;
+      WarningColor = accent;
 
-      LoginButtonTextColor = "#e1e2d5";
-      LoginButtonBackgroundColor = "#d94a59";
-      SystemButtonsIconsColor = "#e1e2d5";
-      SessionButtonTextColor = "#e1e2d5";
-      VirtualKeyboardButtonTextColor = "#e1e2d5";
+      LoginButtonTextColor = text;
+      LoginButtonBackgroundColor = accent;
+      SystemButtonsIconsColor = text;
+      SessionButtonTextColor = text;
+      VirtualKeyboardButtonTextColor = text;
 
-      DropdownTextColor = "#e1e2d5";
-      DropdownSelectedBackgroundColor = "#d94a59";
-      DropdownBackgroundColor = "#1a1b26";
+      DropdownTextColor = text;
+      DropdownSelectedBackgroundColor = accent;
+      DropdownBackgroundColor = base;
 
-      HighlightTextColor = "#e1e2d5";
-      HighlightBackgroundColor = "#d94a59";
+      HighlightTextColor = text;
+      HighlightBackgroundColor = accent;
       HighlightBorderColor = "transparent";
 
-      HoverUserIconColor = "#d94a59";
-      HoverPasswordIconColor = "#d94a59";
-      HoverSystemButtonsIconsColor = "#d94a59";
-      HoverSessionButtonTextColor = "#d94a59";
-      HoverVirtualKeyboardButtonTextColor = "#d94a59";
+      HoverUserIconColor = accent;
+      HoverPasswordIconColor = accent;
+      HoverSystemButtonsIconsColor = accent;
+      HoverSessionButtonTextColor = accent;
+      HoverVirtualKeyboardButtonTextColor = accent;
     };
   };
 in

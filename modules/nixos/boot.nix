@@ -1,3 +1,4 @@
+{ colors, ... }:
 {
   boot = {
     loader = {
@@ -12,12 +13,12 @@
           wallpapers = [ ../../assets/limine-wallpaper.jpg ];
           interface = {
             branding = "NixOS";
-            brandingColor = "e1e2d5";
-            helpColor = "6b6c63";
-            helpColorBright = "d94a59";
+            brandingColor = colors.text;
+            helpColor = colors.muted;
+            helpColorBright = colors.accent;
           };
           graphicalTerminal = {
-            foreground = "e1e2d5";
+            foreground = colors.text;
             margin = 0;
             marginGradient = 0;
           };

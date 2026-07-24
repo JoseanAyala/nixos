@@ -29,6 +29,8 @@
       username = "josean";
       inherit (nixpkgs) lib;
 
+      colors = import ./assets/colors.nix;
+
       linuxOverlays = [
         inputs.noctalia.overlays.default
         inputs.firefox-addons.overlays.default
@@ -59,7 +61,7 @@
         la-maquina = lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
-            inherit username inputs;
+            inherit username inputs colors;
             hostname = "la-maquina";
           };
           modules = [ ./hosts/la-maquina/configuration.nix ];
