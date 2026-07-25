@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     lazygit
     just
+    devenv
     btop
     fastfetch
     eza

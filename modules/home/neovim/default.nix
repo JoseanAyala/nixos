@@ -22,6 +22,16 @@
       # Lua tooling for this Neovim config
       lua-language-server
       stylua
+
+      # Go tooling (lazyvim.plugins.extras.lang.go)
+      go # gopls needs the go binary on PATH
+      gopls
+      gofumpt
+      gotools # goimports
+      golangci-lint
+
+      # TypeScript / React tooling (lazyvim.plugins.extras.lang.typescript)
+      vtsls # bundles its own node + typescript
     ];
   };
 

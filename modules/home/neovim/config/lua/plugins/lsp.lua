@@ -8,6 +8,12 @@ return {
         nil_ls = {
           mason = false,
         },
+        gopls = {
+          mason = false,
+        },
+        vtsls = {
+          mason = false,
+        },
       },
     },
   },

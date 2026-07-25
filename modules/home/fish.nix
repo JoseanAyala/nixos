@@ -2,6 +2,12 @@
   programs.fish = {
     enable = true;
 
+    # devenv 2.0+ native auto-activation: entering a directory with a
+    # devenv.nix activates its environment, no direnv needed.
+    interactiveShellInit = ''
+      devenv hook fish | source
+    '';
+
     shellAliases = {
       # eza
       ls = "eza --icons --group-directories-first";
