@@ -1,15 +1,5 @@
 {
     "input": {
-        "autogain#0": {
-            "bypass": false,
-            "force-silence": false,
-            "input-gain": 0.0,
-            "maximum-history": 15,
-            "output-gain": 0.0,
-            "reference": "Geometric Mean (MSI)",
-            "silence-threshold": -70.0,
-            "target": -18.0
-        },
         "blocklist": [],
         "compressor#0": {
             "attack": 20.0,
@@ -27,10 +17,10 @@
             "link-to-sidechain": -80.01,
             "lpf-frequency": 20000.0,
             "lpf-mode": "Off",
-            "makeup": 4.0,
+            "makeup": 14.0,
             "mode": "Downward",
             "output-gain": 0.0,
-            "ratio": 4.0,
+            "ratio": 3.0,
             "release": 100.0,
             "release-threshold": -80.01,
             "sidechain": {
@@ -245,23 +235,22 @@
             "stereo-link": 100.0,
             "threshold": -1.0
         },
+        "deepfilternet#0": {
+            "attenuation-limit": 24.0,
+            "bypass": false,
+            "input-gain": 0.0,
+            "max-df-processing-threshold": 20.0,
+            "max-erb-processing-threshold": 30.0,
+            "min-processing-buffer": 0,
+            "min-processing-threshold": -10.0,
+            "output-gain": 0.0,
+            "post-filter-beta": 0.02
+        },
         "plugins_order": [
-            "rnnoise#0",
-            "autogain#0",
+            "deepfilternet#0",
             "equalizer#0",
             "compressor#0",
             "limiter#0"
-        ],
-        "rnnoise#0": {
-            "bypass": false,
-            "enable-vad": true,
-            "input-gain": 0.0,
-            "model-name": "\"\"",
-            "output-gain": 0.0,
-            "release": 20.0,
-            "use-standard-model": true,
-            "vad-thres": 50.0,
-            "wet": 0.0
-        }
+        ]
     }
 }
