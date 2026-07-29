@@ -56,7 +56,6 @@ widget_order = [ "lockscreen-login-box@DP-1", "lockscreen-login-box@DP-3" ]
         show_caps_lock = true
         show_keyboard_layout = true
         show_login_button = true
-        show_password_hint = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@DP-3"]
     box_height = 70.0
@@ -76,10 +75,11 @@ widget_order = [ "lockscreen-login-box@DP-1", "lockscreen-login-box@DP-3" ]
         show_caps_lock = true
         show_keyboard_layout = true
         show_login_button = true
-        show_password_hint = true
+
+[accessibility]
+ui_scale = 1.25
 
 [shell]
-ui_scale = 1.2500000111758709
 
     [shell.animation]
     speed = 1.2500000186264515
